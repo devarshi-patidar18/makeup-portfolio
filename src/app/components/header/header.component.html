@@ -1,0 +1,38 @@
+<header class="header" [class.scrolled]="isScrolled">
+    <div class="header-top">
+        <div class="header-left">
+            <span class="logo-main"></span>
+            <!-- <img src="../../../assets/placeholders/logo-placeholder.png" alt="Logo" class="logo" /> -->
+        </div>
+
+        <!-- Desktop menu: shown only when not mobile -->
+        @if(!isMobile){
+        <nav class="nav desktop">
+            <a href="#" (click)="closeMenu()"><span>Home</span></a>
+            <a href="#" (click)="closeMenu()"><span>Services</span></a>
+            <a href="#" (click)="closeMenu()"><span>Gallery</span></a>
+            <a href="#" (click)="closeMenu()"><span>Contact</span></a>
+        </nav>
+        }
+
+        <!-- Hamburger: shown only on mobile -->
+        @if(isMobile){
+        <button class="hamburger mobile" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen"
+            aria-label="Toggle navigation">
+            <span class="line" [class.open]="menuOpen"></span>
+            <span class="line" [class.open]="menuOpen"></span>
+            <span class="line" [class.open]="menuOpen"></span>
+        </button>
+        }
+    </div>
+
+    <!-- Mobile menu - expanded section below header -->
+    @if(isMobile && menuOpen){
+    <nav class="mobile-menu">
+        <a href="#" (click)="toggleMenu()"><span>Home</span></a>
+        <a href="#" (click)="toggleMenu()"><span>Services</span></a>
+        <a href="#" (click)="toggleMenu()"><span>Gallery</span></a>
+        <a href="#" (click)="toggleMenu()"><span>Contact</span></a>
+    </nav>
+    }
+</header>

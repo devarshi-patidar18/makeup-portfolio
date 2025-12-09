@@ -1,0 +1,418 @@
+/* reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Keyframe animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideMenuItemIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulseIcon {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes navLinkGlow {
+    0% {
+        box-shadow: 0 0 0 rgba(255, 79, 152, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 8px rgba(255, 79, 152, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(255, 79, 152, 0);
+    }
+}
+
+/* Header layout using grid for perfect centering */
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(254, 245, 248, 0.32) 100%),
+        url('../../../assets/beautiful-woman-protrait.png');
+    background-size: auto, cover;
+    background-position: center;
+    background-attachment: auto, fixed;
+    box-shadow: 0 4px 20px rgba(20, 20, 40, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideDown 0.6s ease-out;
+    border-bottom: 1px solid rgba(255, 122, 162, 0.1);
+}
+
+/* Header top row - logo and nav */
+.header-top {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 12px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrolled state: header shrinks */
+.header.scrolled {
+    box-shadow: 0 6px 24px rgba(20, 20, 40, 0.12);
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(254, 245, 248, 0.36) 100%),
+        url('../../../assets/beautiful-woman-protrait.png');
+    background-size: auto, cover;
+    background-position: center;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 122, 162, 0.15);
+    border: 1px solid rgb(228, 108, 172);
+    border-radius: 40px;
+}
+
+.header.scrolled .header-top {
+    padding: 10px 10px;
+}
+
+/* Left: logo */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: slideDown 0.6s ease-out 0.1s both;
+    margin-right: 8px;
+}
+
+.logo-text {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff4f98 0%, #ff7aa2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    cursor: pointer;
+}
+
+.logo-text:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 12px rgba(255, 79, 152, 0.3));
+}
+
+.header.scrolled .logo-text {
+    font-size: 20px;
+}
+
+.logo-main {
+    height: 70px;
+    width: 150px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    flex-shrink: 0;
+}
+
+.logo-main:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 4px 12px rgba(255, 79, 152, 0.25));
+}
+
+.header.scrolled .logo-main {
+    height: 50px;
+    width: 100px;
+}
+
+.logo {
+    height: 52px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.header.scrolled .logo {
+    height: 40px;
+}
+
+/* Center nav (desktop) */
+.nav {
+    display: flex;
+    justify-content: center;
+    /* center items in middle column */
+    gap: 34px;
+    align-items: center;
+    font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    animation: slideDown 0.6s ease-out 0.2s both;
+}
+
+.nav a {
+    color: #2b2b2b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 14px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.nav a span {
+    position: relative;
+    display: inline-block;
+}
+
+.nav a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 122, 162, 0.1) 0%, rgba(255, 79, 152, 0.05) 100%);
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.nav a:hover::before {
+    opacity: 1;
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    bottom: 2px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #ff7aa2, #ff4f98);
+    border-radius: 2px;
+    transition: width 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav a:hover {
+    color: #ff4f98;
+    transform: translateY(-2px);
+}
+
+.nav a:hover::after {
+    width: calc(100% - 28px);
+}
+
+.header.scrolled .nav a {
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+/* Right: hamburger */
+.hamburger {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: end;
+    justify-content: center;
+    cursor: pointer;
+    animation: slideDown 0.6s ease-out 0.3s both;
+}
+
+.hamburger .line {
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #ea0866, #bc1b4b);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease, width 0.3s ease;
+}
+
+/* transform lines when open (small animation) */
+.hamburger .line.open:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+    width: 28px;
+}
+
+.hamburger .line.open:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger .line.open:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+    width: 28px;
+}
+
+.hamburger:hover .line {
+    box-shadow: 0 2px 8px rgba(255, 79, 152, 0.4);
+}
+
+/* Mobile menu panel - expanded section of header */
+.mobile-menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(254, 245, 248, 0.95) 100%); */
+    padding: 12px 0;
+    border-top: 2px solid rgba(255, 122, 162, 0.3);
+    animation: slideInFromTop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+}
+
+.mobile-menu a {
+    padding: 16px 20px;
+    text-decoration: none;
+    color: #2b2b2b;
+    font-weight: 600;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255, 122, 162, 0.15);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-menu a span {
+    display: block;
+    position: relative;
+    flex: 1;
+}
+
+.mobile-menu a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #ff4f98 0%, #ff7aa2 100%);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mobile-menu a::after {
+    content: "";
+    position: absolute;
+    right: 20px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff7aa2, #ff4f98);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mobile-menu a:hover {
+    color: #ff4f98;
+    background: linear-gradient(90deg, rgba(255, 122, 162, 0.12) 0%, rgba(255, 79, 152, 0.06) 100%);
+    padding-left: 24px;
+}
+
+.mobile-menu a:hover::before {
+    transform: scaleY(1);
+}
+
+.mobile-menu a:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.mobile-menu a:last-child {
+    border-bottom: none;
+}
+
+/* Stagger animation for menu items */
+.mobile-menu a:nth-child(1) {
+    animation: slideMenuItemIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s both;
+}
+
+.mobile-menu a:nth-child(2) {
+    animation: slideMenuItemIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+.mobile-menu a:nth-child(3) {
+    animation: slideMenuItemIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+}
+
+.mobile-menu a:nth-child(4) {
+    animation: slideMenuItemIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+/* default: treat as mobile-first — hide desktop nav */
+@media (min-width: 768px) {
+
+    /* desktop: show nav in center column */
+    .nav {
+        display: flex;
+    }
+
+    /* on desktop we don't want the hamburger visible */
+    .hamburger {
+        display: none;
+    }
+
+    /* ensure mobile menu is hidden (TS already controls it) */
+    .mobile-menu {
+        display: none;
+    }
+}
