@@ -1,0 +1,111 @@
+<div class="service-detail-page">
+  <!-- Header with Back Button -->
+  <div class="detail-header">
+    <button class="back-btn" (click)="goBack()">
+      <span class="arrow">←</span> Back to Services
+    </button>
+    <h1>{{ serviceTitle }}</h1>
+  </div>
+
+  <!-- Main Content -->
+  <div class="detail-container">
+    <!-- Image Gallery Section -->
+    <div class="gallery-section">
+      <div class="main-image-wrapper">
+        <img 
+          [src]="serviceData[selectedImageIndex]?.ImageUrl" 
+          [alt]="serviceData[selectedImageIndex]?.name"
+          class="main-image"
+          (error)="onImageError($event)">
+        <div class="image-label">
+          <span class="label-text">{{ serviceData[selectedImageIndex]?.name }}</span>
+        </div>
+      </div>
+
+      <!-- Image Navigation -->
+      <div class="image-controls">
+        <button class="nav-btn prev-btn" (click)="prevImage()" [disabled]="serviceData.length <= 1">
+          ‹ Previous
+        </button>
+        <div class="image-counter">
+          {{ selectedImageIndex + 1 }} / {{ serviceData.length }}
+        </div>
+        <button class="nav-btn next-btn" (click)="nextImage()" [disabled]="serviceData.length <= 1">
+          Next ›
+        </button>
+      </div>
+
+      <!-- Thumbnail Gallery -->
+      <div class="thumbnails-grid">
+        @for (item of serviceData; track item.id; let i = $index) {
+          <div 
+            class="thumbnail-item"
+            [class.active]="selectedImageIndex === i"
+            (click)="selectImage(i)">
+            <img 
+              [src]="item.ImageUrl" 
+              [alt]="item.name"
+              class="thumbnail-image">
+            <div class="thumbnail-overlay" *ngIf="selectedImageIndex === i"></div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Details Section -->
+    <div class="details-section">
+      <!-- Description -->
+      <div class="description-box">
+        <h2>About This Service</h2>
+        <p>{{ serviceDescription }}</p>
+      </div>
+
+      <!-- Key Features -->
+      <div class="features-box">
+        <h3>What's Included</h3>
+        <ul class="features-list">
+          @for (detail of serviceDescriptions[serviceType].details; track $index) {
+            <li class="feature-item">
+              <span class="feature-icon">✓</span>
+              <span class="feature-text">{{ detail }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Pricing and CTA -->
+      <div class="cta-box">
+        <h3>Ready to Book?</h3>
+        <p>Contact us today to discuss your makeup needs and schedule your appointment</p>
+        <button class="book-btn" (click)="bookService()">Book This Service</button>
+        <button class="contact-btn" (click)="goBack()">View Other Services</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Services Section -->
+  <section class="related-services">
+    <div class="section-header">
+      <h2>Other Services We Offer</h2>
+      <p>Explore our complete range of professional makeup services</p>
+    </div>
+    <div class="services-preview">
+      <div class="service-preview-item" (click)="router.navigate(['/service', 'bridal'])">
+        <div class="preview-icon">💒</div>
+        <h4>Bridal Makeup</h4>
+      </div>
+      <div class="service-preview-item" (click)="router.navigate(['/service', 'party'])">
+        <div class="preview-icon">✨</div>
+        <h4>Party & Events</h4>
+      </div>
+      <div class="service-preview-item" (click)="router.navigate(['/service', 'prewedding'])">
+        <div class="preview-icon">📸</div>
+        <h4>Pre-Wedding Shoots</h4>
+      </div>
+      <div class="service-preview-item" (click)="router.navigate(['/service', 'photoshoot'])">
+        <div class="preview-icon">📸</div>
+        <h4>Photoshoots</h4>
+      </div>
+    </div>
+  </section>
+</div>

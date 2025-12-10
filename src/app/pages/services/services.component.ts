@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { DataStoreService } from '../../services/data-store.service';
 
 @Component({
     selector: 'app-services',
@@ -8,49 +10,37 @@ import { CommonModule } from '@angular/common';
     templateUrl: './services.component.html',
     styleUrls: ['./services.component.css']
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
+    expandedServiceId: number | null = null;
+
     services = [
         {
             id: 1,
             title: 'Bridal Makeup',
             desc: 'Create your perfect wedding day look with our expert bridal makeup services. Includes professional trials, long-lasting formulas, and customized designs.',
             icon: '💒',
-            features: ['Pre-wedding trials', 'Airbrush available', 'Bridal party packages', 'Touch-up kit included']
+            serviceTypesKey: 'bridalServices'
         },
         {
             id: 2,
             title: 'Party & Event Makeup',
             desc: 'Glam up for any occasion with our party makeup services. From subtle to dramatic, we create looks that turn heads.',
             icon: '✨',
-            features: ['Festive looks', 'HD makeup', 'Quick turnaround', 'All skin types']
+            serviceTypesKey: 'partyServices'
         },
         {
             id: 3,
-            title: 'Photoshoot Makeup',
-            desc: 'Professional makeup for photography and videography. Optimized for cameras and lighting to ensure you look flawless.',
+            title: 'Pre-Wedding Photoshoot',
+            desc: 'Professional makeup for pre-wedding photography sessions. Optimized for cameras and lighting to ensure you look flawless.',
             icon: '📸',
-            features: ['Camera-ready looks', 'Waterproof formulas', 'Outdoor experience', 'Professional lighting knowledge']
+            serviceTypesKey: 'preweddingServices'
         },
         {
             id: 4,
-            title: 'Hair Styling',
-            desc: 'Complete hair transformation with our expert styling services. From traditional to modern, we create stunning hairstyles.',
-            icon: '💇',
-            features: ['Curls & waves', 'Updos & braids', 'Hair extensions', 'Styling consultation']
-        },
-        {
-            id: 5,
-            title: 'Makeup Training',
-            desc: 'Learn makeup artistry from industry professionals. Comprehensive courses from beginner to advanced level with hands-on practice.',
-            icon: '🎓',
-            features: ['Flexible schedules', 'Professional techniques', 'Course materials included', 'Certification provided']
-        },
-        {
-            id: 6,
-            title: 'Special Effects Makeup',
-            desc: 'Creative and artistic makeup for themed events, cosplay, and special projects. Push the boundaries of creativity.',
-            icon: '🎨',
-            features: ['Custom designs', 'Theme consultation', 'Professional products', 'Quick application']
+            title: 'Photoshoot Makeup',
+            desc: 'Professional makeup for photography and videography. Optimized for cameras and lighting to ensure you look flawless.',
+            icon: '📸',
+            serviceTypesKey: 'photoshootServices'
         }
     ];
 
@@ -96,4 +86,44 @@ export class ServicesComponent {
             icon: '👨‍🏫'
         }
     ];
+
+    serviceTypes: { [key: string]: any[] } = {};
+
+    serviceKeyMap: { [key: string]: string } = {
+        'bridalServices': 'bridal',
+        'partyServices': 'party',
+        'preweddingServices': 'prewedding',
+        'photoshootServices': 'photoshoot'
+    };
+
+    constructor(
+        private dataStore: DataStoreService,
+        private router: Router
+    ) {}
+
+    ngOnInit() {
+        this.loadServiceTypes();
+    }
+
+    loadServiceTypes() {
+        this.serviceTypes = {
+            bridalServices: this.dataStore.bridalServices,
+            partyServices: this.dataStore.partyServices,
+            preweddingServices: this.dataStore.preweddingServices,
+            photoshootServices: this.dataStore.photoshootServices
+        };
+    }
+
+    toggleServiceExpand(serviceId: number) {
+        this.expandedServiceId = this.expandedServiceId === serviceId ? null : serviceId;
+    }
+
+    getServiceTypes(serviceTypesKey: string) {
+        return this.serviceTypes[serviceTypesKey] || [];
+    }
+
+    navigateToService(serviceTypesKey: string) {
+        const serviceKey = this.serviceKeyMap[serviceTypesKey];
+        this.router.navigate(['/service', serviceKey]);
+    }
 }

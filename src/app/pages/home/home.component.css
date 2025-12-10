@@ -18,7 +18,7 @@
     align-items: center;
     background: 
         linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(254, 245, 248, 0.32) 100%),
-        url('../../../assets/party_work/Party_1.jpeg');
+        url('../../../assets/party/Party_1.jpeg');
     /* position: relative; */
     overflow: hidden;
     padding: 40px 20px;
@@ -120,7 +120,7 @@
     animation: fadeInRight 0.8s ease-out 0.2s both;
     background: 
         linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(254, 245, 248, 0) 100%),
-        url('../../../assets/party_work/Party_1.jpeg');
+        url('../../../assets/party/Party_1.jpeg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
