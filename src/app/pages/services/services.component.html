@@ -1,0 +1,70 @@
+<div class="services-page">
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Our Services</h1>
+    <p>Discover our complete range of professional makeup and styling services</p>
+  </div>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="section-header">
+      <h2>Professional Services</h2>
+      <p>We offer a wide variety of makeup and styling services tailored to your needs</p>
+    </div>
+
+    <div class="services-grid">
+      <div *ngFor="let service of services" class="service-card">
+        <div class="service-icon">{{ service.icon }}</div>
+        <h3>{{ service.title }}</h3>
+        <p class="service-desc">{{ service.desc }}</p>
+
+        <div class="service-features">
+          <h4>Key Features:</h4>
+          <ul>
+            <li *ngFor="let feature of service.features">
+              <span class="feature-check">✓</span>{{ feature }}
+            </li>
+          </ul>
+        </div>
+
+        <button class="service-btn">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certifications-section">
+    <div class="section-header">
+      <h2>Professional Certifications</h2>
+      <p>Verified qualifications and credentials ensuring excellence in every service</p>
+    </div>
+
+    <div class="certifications-grid">
+      <div *ngFor="let cert of certifications" class="certification-card">
+        <div class="cert-icon">{{ cert.icon }}</div>
+
+        <div class="cert-content">
+          <h3>{{ cert.name }}</h3>
+          <p class="cert-issuer">
+            <strong>Issued by:</strong> {{ cert.issuer }}
+          </p>
+          <p class="cert-year">
+            <strong>Year:</strong> {{ cert.year }}
+          </p>
+          <p class="cert-description">{{ cert.description }}</p>
+        </div>
+
+        <div class="cert-badge">Certified</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to Book Your Service?</h2>
+      <p>Get in touch with us to schedule your appointment or inquire about our services</p>
+      <button class="cta-btn">Contact Us Now</button>
+    </div>
+  </section>
+</div>
