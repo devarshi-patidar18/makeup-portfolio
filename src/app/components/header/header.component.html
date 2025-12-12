@@ -8,10 +8,9 @@
         <!-- Desktop menu: shown only when not mobile -->
         @if(!isMobile){
         <nav class="nav desktop">
-            <a href="#" (click)="closeMenu()"><span>Home</span></a>
-            <a routerLink="/services" (click)="closeMenu()"><span>Services</span></a>
-            <a href="#" (click)="closeMenu()"><span>Gallery</span></a>
-            <a href="#" (click)="closeMenu()"><span>Contact</span></a>
+            @for (item of menuItems; track $index) {
+                <a [routerLink]="item.route" (click)="closeMenu()"><span>{{ item.name }}</span></a>
+            }
         </nav>
         }
 
@@ -27,12 +26,11 @@
     </div>
 
     <!-- Mobile menu - expanded section below header -->
-    @if(isMobile && menuOpen){
+    @if(isMobile && menuOpen){ 
     <nav class="mobile-menu">
-        <a href="#" (click)="toggleMenu()"><span>Home</span></a>
-        <a routerLink="/services" (click)="toggleMenu()"><span>Services</span></a>
-        <a href="#" (click)="toggleMenu()"><span>Gallery</span></a>
-        <a href="#" (click)="toggleMenu()"><span>Contact</span></a>
+        @for (item of menuItems; track $index) {
+            <a [routerLink]="item.route" (click)="toggleMenu()"><span>{{ item.name }}</span></a>
+        }
     </nav>
     }
 </header>

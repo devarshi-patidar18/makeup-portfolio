@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterLink } from "@angular/router";
+import { DataStoreService } from '../../services/data-store.service';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +16,16 @@ export class HeaderComponent implements OnInit {
   private readonly MOBILE_BREAKPOINT = 768;
   private lastScrollPosition = 0;
   private scrollThreshold = 10;
+  menuItems: any = [];
+
+  constructor(public dataStoreService: DataStoreService) { }
 
   ngOnInit() {
     this.checkScreenSize();
+
+    // Load menu items from data store service
+    this.menuItems = this.dataStoreService.headerMenuItems;
+
   }
 
   @HostListener('window:resize')
