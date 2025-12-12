@@ -27,10 +27,10 @@ export class PortfolioComponent implements OnInit {
   buildGallery() {
     const mapWithType = (arr: any[], type: string) => arr.map(i => ({...i, type}));
     this.gallery = [
-      ...mapWithType(this.dataStore.bridalServices || [], 'Bridal'),
-      ...mapWithType(this.dataStore.partyServices || [], 'Party'),
-      ...mapWithType(this.dataStore.preweddingServices || [], 'Pre-Wedding'),
-      ...mapWithType(this.dataStore.photoshootServices || [], 'Photoshoot')
+      ...mapWithType(this.dataStore.services['bridal'] || [], 'Bridal'),
+      ...mapWithType(this.dataStore.services['party'] || [], 'Party'),
+      ...mapWithType(this.dataStore.services['prewedding'] || [], 'Pre-Wedding'),
+      ...mapWithType(this.dataStore.services['photoshoot'] || [], 'Photoshoot')
     ];
   }
 

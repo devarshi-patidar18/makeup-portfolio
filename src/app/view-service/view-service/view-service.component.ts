@@ -99,16 +99,16 @@ export class ViewServiceComponent implements OnInit {
 
     switch (serviceType) {
       case 'bridal':
-        this.serviceData = this.dataStore.bridalServices;
+        this.serviceData = this.dataStore.services['bridal'];
         break;
       case 'party':
-        this.serviceData = this.dataStore.partyServices;
+        this.serviceData = this.dataStore.services['party'];
         break;
       case 'prewedding':
-        this.serviceData = this.dataStore.preweddingServices;
+        this.serviceData = this.dataStore.services['prewedding'];
         break;
       case 'photoshoot':
-        this.serviceData = this.dataStore.photoshootServices;
+        this.serviceData = this.dataStore.services['photoshoot'];
         break;
       default:
         this.router.navigate(['/services']);

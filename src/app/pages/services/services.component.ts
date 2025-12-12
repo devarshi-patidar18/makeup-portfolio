@@ -107,10 +107,10 @@ export class ServicesComponent implements OnInit {
 
     loadServiceTypes() {
         this.serviceTypes = {
-            bridalServices: this.dataStore.bridalServices,
-            partyServices: this.dataStore.partyServices,
-            preweddingServices: this.dataStore.preweddingServices,
-            photoshootServices: this.dataStore.photoshootServices
+            bridalServices: this.dataStore.services['bridal'],
+            partyServices: this.dataStore.services['party'],
+            preweddingServices: this.dataStore.services['prewedding'],
+            photoshootServices: this.dataStore.services['photoshoot']
         };
     }
 

@@ -28,12 +28,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     loadBestImages() {
         // Collect all images with 'best' preference from all services
         const allBestImages = [
-            ...this.dataStore.bridalServices.filter(s => s.preference === 'best'),
-            ...this.dataStore.partyServices.filter(s => s.preference === 'best'),
-            ...this.dataStore.preweddingServices.filter(s => s.preference === 'best'),
-            ...this.dataStore.photoshootServices.filter(s => s.preference === 'best')
+            ...this.dataStore.services['bridal'].filter(s => s.preference === 'best'),
+            ...this.dataStore.services['party'].filter(s => s.preference === 'best'),
+            ...this.dataStore.services['prewedding'].filter(s => s.preference === 'best'),
+            ...this.dataStore.services['photoshoot'].filter(s => s.preference === 'best')
         ];
-        this.bestImages = allBestImages.length > 0 ? allBestImages : this.dataStore.bridalServices;
+        this.bestImages = allBestImages.length > 0 ? allBestImages : this.dataStore.services['bridal'];
         console.log('Best Images loaded:', this.bestImages);
     }
 
