@@ -1,0 +1,33 @@
+<section class="portfolio-page">
+	<div class="portfolio-header">
+		<h2>Featured 
+            <span class="gradient-text">Portfolio</span>
+            </h2>
+		<p class="subtitle">A curated selection of our favourite looks — click any image to view details.</p>
+		<div class="filters">
+			<button *ngFor="let t of types" (click)="filter = t" [class.active]="filter===t">{{ t }}</button>
+		</div>
+	</div>
+
+	<div class="gallery-grid">
+		<div class="card" *ngFor="let item of filtered()" (click)="openModal(item)">
+			<div class="card-media" [style.backgroundImage]="'url(' + item.ImageUrl + ')'">
+				<div class="card-overlay">
+					<div class="card-type">{{ item.type }}</div>
+					<div class="card-name">{{ item.name }}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" *ngIf="modalOpen" (click)="closeModal()">
+		<div class="modal-content" (click)="$event.stopPropagation()">
+			<img [src]="modalImage?.ImageUrl" [alt]="modalImage?.name" />
+			<div class="modal-info">
+				<h3>{{ modalImage?.name }}</h3>
+				<p class="muted">{{ modalImage?.type }}</p>
+				<button class="btn btn-primary" (click)="closeModal()">Close</button>
+			</div>
+		</div>
+	</div>
+</section>

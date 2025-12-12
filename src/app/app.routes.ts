@@ -5,6 +5,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { ViewServiceComponent } from './view-service/view-service/view-service.component';
 import { ArtistsComponent } from './pages/artists/artists.component';
 import { InquiryComponent } from './pages/inquiry/inquiry.component';
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 
 export const routes: Routes = [
@@ -13,6 +14,7 @@ export const routes: Routes = [
 { path: 'service/:id', component: ViewServiceComponent },
 { path: 'artists', component: ArtistsComponent },
 { path: 'inquiry', component: InquiryComponent },
+{ path: 'portfolio', component: PortfolioComponent },
 { path: '**', redirectTo: '' },
 ];
 

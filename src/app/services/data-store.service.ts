@@ -47,5 +47,12 @@ export class DataStoreService {
     { id: 4, name: 'Professional lighting knowledge', ImageUrl: '/bridal/bridal_4.jpeg', preference: 'portfolio' }
   ];
 
+  hairstylesServices = [
+    { id: 1, name: 'Bridal hairstyles', ImageUrl: '/hairstyles/hairstyle_1.jpeg', preference: 'best' },
+    { id: 2, name: 'Party hairstyles', ImageUrl: '/hairstyles/hairstyle_2.jpeg', preference: 'portfolio' },
+    { id: 3, name: 'Pre-wedding styles', ImageUrl: '/hairstyles/hairstyle_3.jpeg', preference: 'portfolio' },
+    { id: 4, name: 'Photoshoot styles', ImageUrl: '/hairstyles/hairstyle_4.jpeg', preference: 'portfolio' }
+  ];
+
 
 }

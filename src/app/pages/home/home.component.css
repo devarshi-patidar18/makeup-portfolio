@@ -62,12 +62,6 @@
     letter-spacing: -1px;
 }
 
-.gradient-text {
-    background: linear-gradient(135deg, #d61464 0%, #ff7aa2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
 
 .hero-subtitle {
     font-size: 18px;
@@ -109,10 +103,6 @@
     background: transparent;
     color: #d61464;
     border: 2px solid #ff4f98;
-}
-
-.bounce {
-    animation: bounce 2s infinite;
 }
 
 .btn-secondary:hover {
@@ -451,14 +441,7 @@
     }
 }
 
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
+
 
 @keyframes imageCarouselFade {
     /* 0% {
