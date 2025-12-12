@@ -1,8 +1,14 @@
 <div class="back-poster"></div>
 
 <!-- Hero Section -->
-<section class="hero">
+<section class="hero" [style.backgroundImage]="'url(' + currentBackgroundImage + ')'">
     <div class="hero-content">
+         <div class="hero-visual" [style.backgroundImage]="'url(' + currentBackgroundImage + ')'">
+            <div class="hero-image-wrapper" >
+                <div class="image-overlay"></div>
+                <div class="overlay-caption">{{ currentImageName }}</div>
+            </div>
+        </div>
         <div class="hero-text">
             <h1 class="hero-title">
                 Transform Your <span class="gradient-text">Beauty</span>
@@ -11,16 +17,11 @@
                 Professional makeup artistry that brings out your natural radiance
             </p>
             <div class="hero-buttons">
-                <button class="btn btn-primary">Book a Session</button>
+                <button class="btn btn-primary bounce">Book a Session</button>
                 <button class="btn btn-secondary">Explore Portfolio</button>
             </div>
         </div>
-        <div class="hero-visual">
-            <div class="hero-image-wrapper">
-                <!-- <img src="../../../assets/party/Party_2.jpeg" alt="Featured Makeup Look" class="hero-image"> -->
-                <div class="image-overlay"></div>
-            </div>
-        </div>
+       
     </div>
     <div class="hero-scroll-indicator">
         <span></span>
