@@ -1,5 +1,6 @@
 <section class="inquiry-wrap">
-	<h2>Book Inquiry / Book Session</h2>
+	<h2>Book <span class="gradient-text">Inquiry</span></h2>
+    <div class="bottom-boder"></div>
 
 	<form (ngSubmit)="submit()" #inquiryForm="ngForm" novalidate>
 		<label>
@@ -23,11 +24,11 @@
 			Select Makeup Type
 			<select name="makeupType" [(ngModel)]="makeupType">
 				<option value="">-- Select --</option>
-				<option>Bridal</option>
-				<option>Prewedding</option>
-				<option>Party</option>
-				<option>Photoshoot</option>
-				<option>Hairstyle</option>
+				<option value="bridal">Bridal</option>
+				<option value="prewedding">Prewedding</option>
+				<option value="party">Party</option>
+				<option value="photoshoot">Photoshoot</option>
+				<option value="hairstyles">Hairstyle</option>
 			</select>
 		</label>
 
@@ -37,7 +38,7 @@
 		</label>
 
 		<div class="actions">
-			<button class="submit-btn" type="submit">Send Inquiry</button>
+			<button class="btn btn-primary" type="submit" (click)="sendInquiry()">Send Inquiry</button>
 		</div>
 	</form>
 

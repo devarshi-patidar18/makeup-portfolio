@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { DataStoreService } from '../../services/data-store.service';
 
 // Replace these with your EmailJS values
 const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
@@ -23,13 +24,14 @@ export class InquiryComponent implements OnInit {
   makeupType = '';
   showConfirmation = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, public dataStore: DataStoreService) {}
 
   ngOnInit() {
     // preselect makeup type if provided as query param (from Book button)
     this.route.queryParams.subscribe(params => {
       if (params['service']) this.makeupType = params['service'];
     });
+    this.makeupType = this.dataStore.selectedServiceType;
   }
 
   validatePhone(): boolean {
@@ -86,5 +88,10 @@ export class InquiryComponent implements OnInit {
 
   closeConfirmation() {
     this.showConfirmation = false;
+  }
+
+  sendInquiry(){
+    this.submit();
+    this.makeupType = '';
   }
 }

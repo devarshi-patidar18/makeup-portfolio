@@ -16,7 +16,10 @@
       @for (service of services; track service.id) {
         <div class="service-card">
           <div class="service-header">
-            <div class="service-icon">{{ service.icon }}</div>
+            <div>@for (item of service.icon; track $index) {
+              <div class="service-icon" [style.backgroundImage]="'url(' + item + ')'"></div>
+            }
+            </div>
             <h3>{{ service.title }}</h3>
           </div>
 
@@ -27,12 +30,12 @@
               class="expand-btn" 
               (click)="toggleServiceExpand(service.id)"
               [class.expanded]="expandedServiceId === service.id">
-              {{ expandedServiceId === service.id ? 'Hide Details' : 'View Service Types' }}
+              {{ expandedServiceId === service.id ? 'Hide Details' : 'View Service' }}
             </button>
             <button 
-              class="view-detail-btn"
-              (click)="navigateToService(service.serviceTypesKey)">
-              View Full Details
+              class="view-detail-btn" routerLink="/inquiry"
+              (click)="this.dataStore.selectedServiceType = service.serviceTypesKey">
+              Book for {{ service.title }}
             </button>
           </div>
 

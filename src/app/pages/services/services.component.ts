@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DataStoreService } from '../../services/data-store.service';
 
 @Component({
     selector: 'app-services',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterLink],
     templateUrl: './services.component.html',
     styleUrls: ['./services.component.css']
 })
@@ -16,31 +16,35 @@ export class ServicesComponent implements OnInit {
     services = [
         {
             id: 1,
+            
             title: 'Bridal Makeup',
             desc: 'Create your perfect wedding day look with our expert bridal makeup services. Includes professional trials, long-lasting formulas, and customized designs.',
-            icon: '💒',
-            serviceTypesKey: 'bridalServices'
+            icon: ['/bridal/bridal_1.jpeg', '/bridal/bridal_2.jpeg', '/bridal/bridal_3.jpeg'],
+            serviceTypesKey: 'bridal'
         },
         {
             id: 2,
+            
             title: 'Party & Event Makeup',
             desc: 'Glam up for any occasion with our party makeup services. From subtle to dramatic, we create looks that turn heads.',
             icon: '✨',
-            serviceTypesKey: 'partyServices'
+            serviceTypesKey: 'party'
         },
         {
             id: 3,
+           
             title: 'Pre-Wedding Photoshoot',
             desc: 'Professional makeup for pre-wedding photography sessions. Optimized for cameras and lighting to ensure you look flawless.',
             icon: '📸',
-            serviceTypesKey: 'preweddingServices'
+            serviceTypesKey: 'prewedding'
         },
         {
             id: 4,
+            
             title: 'Photoshoot Makeup',
             desc: 'Professional makeup for photography and videography. Optimized for cameras and lighting to ensure you look flawless.',
             icon: '📸',
-            serviceTypesKey: 'photoshootServices'
+            serviceTypesKey: 'photoshoot'
         }
     ];
 
@@ -97,7 +101,7 @@ export class ServicesComponent implements OnInit {
     };
 
     constructor(
-        private dataStore: DataStoreService,
+        public dataStore: DataStoreService,
         private router: Router
     ) {}
 

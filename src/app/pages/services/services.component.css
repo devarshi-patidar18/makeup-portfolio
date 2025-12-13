@@ -282,6 +282,7 @@
     max-height: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     max-height: 1000px;
@@ -421,6 +422,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -432,6 +434,7 @@
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -442,6 +445,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -453,6 +457,7 @@
     max-height: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     max-height: 1000px;
@@ -461,9 +466,12 @@
 }
 
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -494,6 +502,11 @@
   .service-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .service-header div {
+    display: flex;
+    gap: 5%;
   }
 
   .service-actions {
@@ -551,8 +564,13 @@
   }
 
   .service-icon {
-    font-size: 2.5rem;
-    padding: 10px 15px;
+    /* font-size: 2.5rem; */
+    /* padding: 10px 15px; */
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    /* background-size: contain; */
   }
 
   .service-card h3 {

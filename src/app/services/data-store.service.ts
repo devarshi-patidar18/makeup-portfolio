@@ -67,7 +67,6 @@ export class DataStoreService {
   // photoshootServices: any = [];
   // hairstylesServices: any = [];
 
-  
-
+  selectedServiceType: string = '';
 
 }
