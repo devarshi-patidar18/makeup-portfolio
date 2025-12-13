@@ -1,0 +1,52 @@
+<section class="inquiry-wrap">
+	<h2>Book Inquiry / Book Session</h2>
+
+	<form (ngSubmit)="submit()" #inquiryForm="ngForm" novalidate>
+		<label>
+			Name *
+			<input name="name" [(ngModel)]="name" required #nameRef="ngModel" />
+		</label>
+		<div class="error" *ngIf="nameRef.invalid && nameRef.touched">Name is required.</div>
+
+		<label>
+			Mobile Number *
+			<input name="phone" [(ngModel)]="phone" required #phoneRef="ngModel" />
+		</label>
+		<div class="error" *ngIf="phoneRef.touched && !validatePhone()">Enter a valid phone number.</div>
+
+		<label>
+			Email (optional)
+			<input name="email" [(ngModel)]="email" type="email" />
+		</label>
+
+		<label>
+			Select Makeup Type
+			<select name="makeupType" [(ngModel)]="makeupType">
+				<option value="">-- Select --</option>
+				<option>Bridal</option>
+				<option>Prewedding</option>
+				<option>Party</option>
+				<option>Photoshoot</option>
+				<option>Hairstyle</option>
+			</select>
+		</label>
+
+		<label>
+			Message
+			<textarea name="message" [(ngModel)]="message"></textarea>
+		</label>
+
+		<div class="actions">
+			<button class="submit-btn" type="submit">Send Inquiry</button>
+		</div>
+	</form>
+
+	<!-- Confirmation modal -->
+	<div class="modal" *ngIf="showConfirmation">
+		<div class="modal-content">
+			<h3>Inquiry Sent</h3>
+			<p>Your inquiry has been sent to the artist. They will contact you soon.</p>
+			<button (click)="closeConfirmation()">OK</button>
+		</div>
+	</div>
+</section>
