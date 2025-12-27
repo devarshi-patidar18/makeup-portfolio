@@ -1,4 +1,256 @@
-.artist-list{display:flex;flex-direction:column;gap:0.8rem}
-.artist{display:flex;gap:0.8rem;align-items:center;padding:0.6rem;border:1px solid #eee;border-radius:8px}
-.artist img{width:74px;height:74px;object-fit:cover;border-radius:8px}
-.muted{color:var(--muted);font-size:0.9rem}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: 'Poppins', sans-serif; */
+}
+
+body {
+  background: #fff;
+  color: #333;
+}
+
+.about-artist-title{
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+/* Hero */
+.artist-hero {
+  height: 60vh;
+  background: linear-gradient(135deg, #d81b60, #f06292);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.artist-hero h1 {
+  font-size: 40px;
+}
+
+.artist-hero p {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* Profile */
+.artist-profile {
+  display: flex;
+  gap: 40px;
+  padding: 0px 10%;
+  align-items: center;
+}
+
+.artist-image img {
+  width: 280px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(216, 27, 96, 0.3);
+}
+
+.artist-details h2 {
+  color: #d81b60;
+  font-size: 32px;
+}
+
+.artist-details h4 {
+  color: #f06292;
+  margin: 8px 0 16px;
+}
+
+.artist-details p {
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* Stats */
+.artist-stats {
+  display: flex;
+  gap: 30px;
+}
+
+.artist-stats div span {
+  font-size: 28px;
+  color: #d81b60;
+  font-weight: bold;
+}
+
+.artist-stats div p {
+  font-size: 14px;
+}
+
+/* Expertise */
+.artist-expertise {
+  background: #fff5f8;
+  padding: 50px 10%;
+  text-align: center;
+}
+
+.artist-expertise h2 {
+  color: #d81b60;
+  margin-bottom: 30px;
+}
+
+.expertise-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  font-weight: 500;
+  color: #ad1457;
+}
+
+/* Certifications */
+.artist-certifications {
+  padding: 50px 10%;
+}
+
+.artist-certifications h2 {
+  color: #d81b60;
+  margin-bottom: 20px;
+}
+
+.artist-certifications ul li {
+  margin-bottom: 10px;
+  list-style: none;
+  color: #444;
+}
+
+/* CTA */
+.artist-cta {
+  background: linear-gradient(135deg, #f06292, #d81b60);
+  padding: 50px 10%;
+  text-align: center;
+  color: white;
+}
+
+.artist-cta button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  border: none;
+  background: white;
+  color: #d81b60;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .artist-profile {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.video-container video{
+    /* width: 100%;
+    height: 100%; */
+    object-fit: cover;
+}
+
+/* Contact Section */
+.artist-contact {
+  background: #fff5f8;
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.artist-contact h2 {
+  color: #d81b60;
+  font-size: 32px;
+}
+
+.artist-contact .subtitle {
+  margin-top: 8px;
+  color: #777;
+  font-size: 15px;
+}
+
+/* Cards */
+.contact-cards {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.contact-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(216, 27, 96, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(216, 27, 96, 0.25);
+}
+
+.contact-card .icon {
+  font-size: 28px;
+}
+
+.contact-card h4 {
+  margin: 15px 0 10px;
+  color: #ad1457;
+}
+
+.contact-card a {
+  text-decoration: none;
+  color: #d81b60;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+}
+
+
+/* Inline Contact Section */
+.artist-contact-inline {
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #f8bbd0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.contact-item .icon {
+  font-size: 16px;
+}
+
+.contact-item a {
+  color: #d81b60;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .artist-contact-inline {
+    grid-template-columns: 1fr;
+  }
+}
