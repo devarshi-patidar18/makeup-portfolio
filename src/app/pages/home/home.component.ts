@@ -2,13 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { DataStoreService } from '../../services/data-store.service';
+import { LoaderComponent } from "../../loader/loader.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
-    imports: [RouterLink, CommonModule]
+    imports: [RouterLink, CommonModule, LoaderComponent]
 })
 export class HomeComponent implements OnInit, OnDestroy {
     currentImageIndex: number = 0;
@@ -20,6 +21,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(private dataStore: DataStoreService) {}
 
     ngOnInit() {
+        this.dataStore.isPageLoading = true;
+        setTimeout(() => {
+            this.dataStore.isPageLoading = false;
+        }, 2000);
         this.loadBestImages();
         this.setInitialImage();
         this.startImageCarousel();
@@ -31,7 +36,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             ...this.dataStore.services['bridal'].filter(s => s.preference === 'best'),
             ...this.dataStore.services['party'].filter(s => s.preference === 'best'),
             ...this.dataStore.services['prewedding'].filter(s => s.preference === 'best'),
-            ...this.dataStore.services['photoshoot'].filter(s => s.preference === 'best')
+            ...this.dataStore.services['photoshoot'].filter(s => s.preference === 'best'),
+            ...this.dataStore.services['hairstyles'].filter(s => s.preference === 'best')
         ];
         this.bestImages = allBestImages.length > 0 ? allBestImages : this.dataStore.services['bridal'];
         console.log('Best Images loaded:', this.bestImages);

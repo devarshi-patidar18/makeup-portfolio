@@ -14,99 +14,97 @@
 
     <div class="services-grid">
       @for (service of services; track service.id) {
-        <div class="service-card">
-          <div class="service-header">
-            <div>@for (item of service.icon; track $index) {
-              <div class="service-icon" [style.backgroundImage]="'url(' + item + ')'"></div>
-            }
-            </div>
-            <h3>{{ service.title }}</h3>
+      <div class="service-card">
+        <div class="service-header">
+          <!-- {{service.icon}} -->
+          <div>@for (item of service.icon; track $index) {
+            <!-- {{$index}} -->
+            <!-- <img [src]="'../..' + item" alt="name" class="type-image" > -->
+            <!-- {{item}} -->
+            @if ($index <3) { <div class="service-icon" [style.backgroundImage]="'url(' + item + ')'">
           </div>
-
-          <p class="service-desc">{{ service.desc }}</p>
-
-          <div class="service-actions">
-            <button 
-              class="expand-btn" 
-              (click)="toggleServiceExpand(service.id)"
-              [class.expanded]="expandedServiceId === service.id">
-              {{ expandedServiceId === service.id ? 'Hide Details' : 'View Service' }}
-            </button>
-            <button 
-              class="view-detail-btn" routerLink="/inquiry"
-              (click)="this.dataStore.selectedServiceType = service.serviceTypesKey">
-              Book for {{ service.title }}
-            </button>
-          </div>
-
-          <!-- Service Types Section - Expandable -->
-          @if (expandedServiceId === service.id) {
-            <div class="service-types-container" @fadeIn>
-              <div class="service-types-header">
-                <h4>Service Types & Examples</h4>
-              </div>
-
-              <div class="service-types-grid">
-                @for (type of getServiceTypes(service.serviceTypesKey); track type.id) {
-                  <div 
-                    class="service-type-card"
-                    (click)="navigateToService(service.serviceTypesKey)">
-                    <div class="type-image-wrapper">
-                      <img 
-                        [src]="type.ImageUrl" 
-                        [alt]="type.name"
-                        class="type-image"
-                        loading="lazy">
-                      <div class="image-overlay"></div>
-                    </div>
-                    <div class="type-info">
-                      <h5>{{ type.name }}</h5>
-                    </div>
-                  </div>
-                }
-              </div>
-            </div>
+          }
           }
         </div>
-      }
-    </div>
-  </section>
 
-  <!-- Certifications Section -->
-  <section class="certifications-section">
-    <div class="section-header">
-      <h2>Professional Certifications</h2>
-      <p>Verified qualifications and credentials ensuring excellence in every service</p>
-    </div>
+      </div>
+      <h3>{{ service.title }}</h3>
 
-    <div class="certifications-grid">
-      @for (cert of certifications; track cert.id) {
-        <div class="certification-card">
-          <div class="cert-icon">{{ cert.icon }}</div>
+      <p class="service-desc">{{ service.desc }}</p>
 
-          <div class="cert-content">
-            <h3>{{ cert.name }}</h3>
-            <p class="cert-issuer">
-              <strong>Issued by:</strong> {{ cert.issuer }}
-            </p>
-            <p class="cert-year">
-              <strong>Year:</strong> {{ cert.year }}
-            </p>
-            <p class="cert-description">{{ cert.description }}</p>
-          </div>
+      <div class="service-actions">
+        <button class="expand-btn" (click)="goToPortFolio(service.serviceTypesKey)"
+          [class.expanded]="expandedServiceId === service.id">
+          Explore{{' ' + service.title + ' '}}Portfolio 
+        </button>
+        <button class="view-detail-btn" routerLink="/inquiry"
+          (click)="this.dataStore.selectedServiceType = service.serviceTypesKey">
+          Book for {{ service.title }}
+        </button>
+      </div>
 
-          <div class="cert-badge">Certified</div>
+      <!-- Service Types Section - Expandable -->
+      <!-- @if (expandedServiceId === service.id) {
+      <div class="service-types-container">
+        <div class="service-types-header">
+          <h4>Service Types & Examples</h4>
         </div>
-      }
-    </div>
-  </section>
 
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="cta-content">
-      <h2>Ready to Book Your Service?</h2>
-      <p>Get in touch with us to schedule your appointment or inquire about our services</p>
-      <button class="cta-btn">Contact Us Now</button>
+        <div class="service-types-grid">
+          @for (type of getServiceTypes(service.serviceTypesKey); track type.id) {
+          <div class="service-type-card" (click)="navigateToService(service.serviceTypesKey)">
+            <div class="type-image-wrapper">
+              <img [src]="type.imageUrl" [alt]="type.name" class="type-image" loading="lazy">
+              <div class="image-overlay"></div>
+            </div>
+            <div class="type-info">
+              <h5>{{ type.name }}</h5>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+      } -->
     </div>
-  </section>
+    }
+</div>
+</section>
+
+<!-- Certifications Section -->
+<section class="certifications-section">
+  <div class="section-header">
+    <h2>Professional Certifications</h2>
+    <p>Verified qualifications and credentials ensuring excellence in every service</p>
+  </div>
+
+  <div class="certifications-grid">
+    @for (cert of certifications; track cert.id) {
+    <div class="certification-card">
+      <div class="cert-icon">{{ cert.icon }}</div>
+
+      <div class="cert-content">
+        <h3>{{ cert.name }}</h3>
+        <p class="cert-issuer">
+          <strong>Issued by:</strong> {{ cert.issuer }}
+        </p>
+        <p class="cert-year">
+          <strong>Year:</strong> {{ cert.year }}
+        </p>
+        <p class="cert-description">{{ cert.description }}</p>
+      </div>
+
+      <div class="cert-badge">Certified</div>
+    </div>
+    }
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="cta-content">
+    <h2>Ready to Book Your Service?</h2>
+    <p>Get in touch with us to schedule your appointment or inquire about our services</p>
+    <button class="cta-btn">Contact Us Now</button>
+  </div>
+</section>
 </div>

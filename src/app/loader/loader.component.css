@@ -1,0 +1,64 @@
+/* Overlay */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 245, 248, 0.75); /* soft pink opacity */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Loader box */
+.loader-container {
+  text-align: center;
+}
+
+/* Logo animation */
+.logo-loader {
+  width: 260px;
+  animation: logoPulse 2s ease-in-out infinite;
+}
+
+/* Loading dots */
+.dots {
+  margin-top: 20px;
+}
+
+.dots span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin: 0 4px;
+  background-color: #d81b60;
+  border-radius: 50%;
+  animation: dotBlink 1.5s infinite both;
+}
+
+.dots span:nth-child(1) { animation-delay: 0s; }
+.dots span:nth-child(2) { animation-delay: 0.2s; }
+.dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Text */
+.loading-text {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #ad1457;
+  letter-spacing: 1px;
+}
+
+/* Animations */
+@keyframes logoPulse {
+  0% { opacity: 0.6; transform: scale(0.97); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.6; transform: scale(0.97); }
+}
+
+@keyframes dotBlink {
+  0% { opacity: 0.3; }
+  20% { opacity: 1; }
+  100% { opacity: 0.3; }
+}

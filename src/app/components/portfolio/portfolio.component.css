@@ -26,9 +26,9 @@
 }
 
 .filters {
-    display: flex;
+    /* display: flex;
     gap: 4px;
-    justify-content: center;
+    justify-content: center; */
     margin-bottom: 18px
 }
 
@@ -42,10 +42,11 @@
 }
 
 .filters button.active {
-    background: var(--accent);
+    background: black;
     /* color: white; */
-    border-color: var(--accent);
+    border-color: white;
     box-shadow: 0 6px 18px rgba(255, 79, 152, 0.12);
+    color: white;
     animation: bounce .52s ease-in-out;
 }
 

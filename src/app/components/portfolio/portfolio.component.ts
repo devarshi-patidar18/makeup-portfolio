@@ -13,29 +13,37 @@ import { DataStoreService } from '../../services/data-store.service';
 })
 export class PortfolioComponent implements OnInit {
   gallery: Array<any> = [];
-  filter: string = 'All';
-  types: string[] = ['All', 'Bridal', 'Party', 'Pre-Wedding', 'Photoshoot'];
+  filter: string = 'all';
+  types:any [] = [{key: 'all', value: 'All'}, {key:'bridal', value: 'Bridal'}, {key:'party', value: 'Party'}, {key:'prewedding', value: 'Pre-Wedding'}, {key:'photoshoot', value: 'Photoshoot'}, {key:'hairstyles', value: 'Hairstyles'}];
   modalOpen: boolean = false;
   modalImage: any = null;
 
   constructor(private dataStore: DataStoreService) {}
 
   ngOnInit(): void {
+    this.dataStore.isPageLoading = true;
+    window.scroll(0,0);
+    // if(this.dataStore.selectedServiceType == )
+    this.filter = this.dataStore.selectedServiceType || 'all';
     this.buildGallery();
   }
 
   buildGallery() {
     const mapWithType = (arr: any[], type: string) => arr.map(i => ({...i, type}));
     this.gallery = [
-      ...mapWithType(this.dataStore.services['bridal'] || [], 'Bridal'),
-      ...mapWithType(this.dataStore.services['party'] || [], 'Party'),
-      ...mapWithType(this.dataStore.services['prewedding'] || [], 'Pre-Wedding'),
-      ...mapWithType(this.dataStore.services['photoshoot'] || [], 'Photoshoot')
+      ...mapWithType(this.dataStore.services['bridal'] || [], 'bridal'),
+      ...mapWithType(this.dataStore.services['party'] || [], 'party'),
+      ...mapWithType(this.dataStore.services['prewedding'] || [], 'prewedding'),
+      ...mapWithType(this.dataStore.services['photoshoot'] || [], 'photoshoot'),
+      ...mapWithType(this.dataStore.services['hairstyles'] || [], 'hairstyles')
     ];
+    if (this.gallery.length != 0) {
+      this.dataStore.isPageLoading = false;
+    }
   }
 
   filtered() {
-    if (this.filter === 'All') return this.gallery;
+    if (this.filter === 'all') return this.gallery;
     return this.gallery.filter(g => g.type === this.filter);
   }
 

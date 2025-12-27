@@ -12,41 +12,13 @@ import { DataStoreService } from '../../services/data-store.service';
 })
 export class ServicesComponent implements OnInit {
     expandedServiceId: number | null = null;
+    constructor(
+        public dataStore: DataStoreService,
+        private router: Router
+    ) { }
 
-    services = [
-        {
-            id: 1,
-            
-            title: 'Bridal Makeup',
-            desc: 'Create your perfect wedding day look with our expert bridal makeup services. Includes professional trials, long-lasting formulas, and customized designs.',
-            icon: ['/bridal/bridal_1.jpeg', '/bridal/bridal_2.jpeg', '/bridal/bridal_3.jpeg'],
-            serviceTypesKey: 'bridal'
-        },
-        {
-            id: 2,
-            
-            title: 'Party & Event Makeup',
-            desc: 'Glam up for any occasion with our party makeup services. From subtle to dramatic, we create looks that turn heads.',
-            icon: '✨',
-            serviceTypesKey: 'party'
-        },
-        {
-            id: 3,
-           
-            title: 'Pre-Wedding Photoshoot',
-            desc: 'Professional makeup for pre-wedding photography sessions. Optimized for cameras and lighting to ensure you look flawless.',
-            icon: '📸',
-            serviceTypesKey: 'prewedding'
-        },
-        {
-            id: 4,
-            
-            title: 'Photoshoot Makeup',
-            desc: 'Professional makeup for photography and videography. Optimized for cameras and lighting to ensure you look flawless.',
-            icon: '📸',
-            serviceTypesKey: 'photoshoot'
-        }
-    ];
+    services: any = [];
+    iconsString:string = '';
 
     certifications = [
         {
@@ -97,16 +69,57 @@ export class ServicesComponent implements OnInit {
         'bridalServices': 'bridal',
         'partyServices': 'party',
         'preweddingServices': 'prewedding',
-        'photoshootServices': 'photoshoot'
+        'photoshootServices': 'photoshoot',
+        'hairstylesServices': 'hairstyles'
     };
 
-    constructor(
-        public dataStore: DataStoreService,
-        private router: Router
-    ) {}
+
 
     ngOnInit() {
+        window.scroll(0,0);
+        this.services = [
+            {
+                id: 1,
+                title: 'Bridal Makeup',
+                desc: 'Create your perfect wedding day look with our expert bridal makeup services. Includes professional trials, long-lasting formulas, and customized designs.',
+                icon: [...this.dataStore.services['bridal'].map(s => s.imageUrl)],
+                serviceTypesKey: 'bridal'
+            },
+            {
+                id: 2,
+                title: 'Party & Event Makeup',
+                desc: 'Glam up for any occasion with our party makeup services. From subtle to dramatic, we create looks that turn heads.',
+                icon: [...this.dataStore.services['party'].map(s => s.imageUrl)],
+                serviceTypesKey: 'party'
+            },
+            {
+                id: 3,
+                title: 'Pre-Wedding Photoshoot',
+                desc: 'Professional makeup for pre-wedding photography sessions. Optimized for cameras and lighting to ensure you look flawless.',
+                icon: [...this.dataStore.services['prewedding'].map(s => s.imageUrl)],
+                serviceTypesKey: 'prewedding'
+            },
+            {
+                id: 4,
+                title: 'Photoshoot Makeup',
+                desc: 'Professional makeup for photography and videography. Optimized for cameras and lighting to ensure you look flawless.',
+                icon: [...this.dataStore.services['photoshoot'].map(s => s.imageUrl)],
+                serviceTypesKey: 'photoshoot'
+            },
+            {
+                id: 5,
+                title: 'Hairstyling Services',
+                desc: 'Complete your look with our hairstyling services. From elegant updos to trendy styles, we tailor each look to your preferences.',
+                icon: [...this.dataStore.services['hairstyles'].map(s => s.imageUrl)],
+                serviceTypesKey: 'hairstyles'
+            }
+        ];
         this.loadServiceTypes();
+        // this.dataStore.services['hairstyles'].forEach(s => {
+        //     console.log(s.imageUrl)
+        //     let images = '';
+        //     return  
+        // });
     }
 
     loadServiceTypes() {
@@ -114,12 +127,15 @@ export class ServicesComponent implements OnInit {
             bridalServices: this.dataStore.services['bridal'],
             partyServices: this.dataStore.services['party'],
             preweddingServices: this.dataStore.services['prewedding'],
-            photoshootServices: this.dataStore.services['photoshoot']
+            photoshootServices: this.dataStore.services['photoshoot'],
+            hairstylesServices: this.dataStore.services['hairstyles']
         };
     }
 
-    toggleServiceExpand(serviceId: number) {
-        this.expandedServiceId = this.expandedServiceId === serviceId ? null : serviceId;
+    goToPortFolio(serviceKey: string) {
+        this.dataStore.selectedServiceType = serviceKey;
+        console.log(this.dataStore.selectedServiceType)
+        this.router.navigate(['/portfolio']);
     }
 
     getServiceTypes(serviceTypesKey: string) {
