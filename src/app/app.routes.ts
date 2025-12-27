@@ -9,7 +9,7 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 
 
 export const routes: Routes = [
-{ path: '', component: HomeComponent },
+{ path: '', component: HomeComponent, pathMatch: 'full'},
 { path: 'services', component: ServicesComponent },
 { path: 'service/:id', component: ViewServiceComponent },
 { path: 'artists', component: ArtistsComponent },
