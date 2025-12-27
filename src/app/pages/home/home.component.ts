@@ -2,14 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { DataStoreService } from '../../services/data-store.service';
-import { LoaderComponent } from "../../loader/loader.component";
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css'],
-    imports: [RouterLink, CommonModule, LoaderComponent]
+    imports: [RouterLink, CommonModule]
 })
 export class HomeComponent implements OnInit, OnDestroy {
     currentImageIndex: number = 0;
@@ -22,9 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.dataStore.isPageLoading = true;
-        setTimeout(() => {
-            this.dataStore.isPageLoading = false;
-        }, 2000);
+        window.scroll(0,0);
         this.loadBestImages();
         this.setInitialImage();
         this.startImageCarousel();
@@ -41,6 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         ];
         this.bestImages = allBestImages.length > 0 ? allBestImages : this.dataStore.services['bridal'];
         console.log('Best Images loaded:', this.bestImages);
+        this.dataStore.isPageLoading = false;
     }
 
     setInitialImage() {
@@ -56,6 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.carouselInterval = setInterval(() => {
             this.changeImage();
         }, 5000); // Change image every 2 seconds
+
     }
 
     changeImage() {

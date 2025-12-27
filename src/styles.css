@@ -1,8 +1,8 @@
-.logo-main{
+.logo-main {
     background-image: url('../src/assets/main-logo-wbg.png');
 }
 
-body{
+body {
     margin: 0;
 }
 
@@ -18,9 +18,12 @@ body{
 }
 
 @keyframes zoom-in {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.5px);
     }
@@ -31,9 +34,12 @@ body{
 }
 
 @keyframes bounce {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-10px);
     }
@@ -74,30 +80,97 @@ body{
 }
 
 .video-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .video-container video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
 }
 
 .video-container .content {
-  position: relative;
-  z-index: 2;
-  color: white;
-  text-align: center;
-  top: 40%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  padding: 20px;
-  border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    top: 40%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px
+}
+
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr
+    }
+}
+
+
+.card {
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(10, 10, 10, 0.06);
+    transition: transform .28s ease, box-shadow .28s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 48px rgba(10, 10, 10, 0.12);
+
+}
+
+.card-media {
+    height: 220px;
+    background-position: center;
+    background-size: cover;
+    position: relative
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 14px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.42) 100%);
+    color: white
+}
+
+.card-type {
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    display: inline-block;
+    padding: 6px 8px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-weight: 600
+}
+
+.card-name {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700
 }
