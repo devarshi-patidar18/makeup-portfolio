@@ -82,5 +82,7 @@ export class DataStoreService {
   }
 
   isPageLoading: boolean = false;
+  isEnquirySubmitted: boolean = false;
+  messageBanner: string = '';
 
 }

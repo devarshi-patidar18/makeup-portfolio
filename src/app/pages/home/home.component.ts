@@ -17,11 +17,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     currentImageName: string = '';
     carouselInterval: any;
 
-    constructor(private dataStore: DataStoreService) {}
+    constructor(public dataStore: DataStoreService) {}
 
     ngOnInit() {
         this.dataStore.isPageLoading = true;
         window.scroll(0,0);
+        setTimeout(() => {
+           this.dataStore.isEnquirySubmitted = false; 
+        }, 5000);
         this.loadBestImages();
         this.setInitialImage();
         this.startImageCarousel();

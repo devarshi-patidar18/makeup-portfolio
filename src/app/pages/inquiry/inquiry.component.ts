@@ -25,6 +25,7 @@ export class InquiryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    window.scroll(0,0);
     // preselect makeup type if provided as query param (from Book button)
     this.route.queryParams.subscribe(params => {
       if (params['service']) this.makeupType = params['service'];
@@ -46,6 +47,8 @@ export class InquiryComponent implements OnInit {
       alert('Please enter a valid contact number');
       return;
     }
+    this.dataStore.isPageLoading = true;
+    this.dataStore.messageBanner = 'Please wait while submitting your inquiry...';
 
     const templateParams = {
       name: this.name,
@@ -77,6 +80,9 @@ export class InquiryComponent implements OnInit {
 
       await win.emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
       this.showConfirmation = true;
+      this.dataStore.isEnquirySubmitted = true;
+      this.router.navigate(['/']);
+      this.dataStore.isPageLoading = false;
       this.clearForm();
     } catch (err) {
       console.error('EmailJS send error', err);
@@ -86,7 +92,11 @@ export class InquiryComponent implements OnInit {
 
   private ensureEmailJsLoaded(): Promise<void> {
     const win: any = window as any;
-    if (win.emailjs && win.emailjs.send) return Promise.resolve();
+    if (win.emailjs){
+    // this.dataStore.isPageLoading = false;
+     return Promise.resolve();
+
+    }
 
     return new Promise((resolve, reject) => {
       const existing = document.querySelector('script[data-emailjs]');
@@ -114,15 +124,8 @@ export class InquiryComponent implements OnInit {
   }
 
   closeConfirmation() {
-    this.dataStore.isPageLoading = false;
+    
     this.router.navigate(["/"]);
   }
 
-  sendInquiry() {
-    this.dataStore.isPageLoading = true;
-    this.submit();
-    this.makeupType = '';
-  }
-
-  
 }

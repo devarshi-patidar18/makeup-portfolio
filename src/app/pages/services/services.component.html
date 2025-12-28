@@ -1,8 +1,9 @@
 <div class="services-page">
   <!-- Page Header -->
   <div class="page-header">
-    <h2>Our 
-      <span class="gradient-text">Services</span></h2>
+    <h2>Our
+      <span class="gradient-text">Services</span>
+    </h2>
     <p>Discover our complete range of professional makeup and styling services</p>
   </div>
 
@@ -36,7 +37,7 @@
       <div class="service-actions">
         <button class="expand-btn" (click)="goToPortFolio(service.serviceTypesKey)"
           [class.expanded]="expandedServiceId === service.id">
-          Explore{{' ' + service.title + ' '}}Portfolio 
+          Explore{{' ' + service.title + ' '}}Portfolio
         </button>
         <button class="view-detail-btn" routerLink="/inquiry"
           (click)="this.dataStore.selectedServiceType = service.serviceTypesKey">
@@ -44,28 +45,6 @@
         </button>
       </div>
 
-      <!-- Service Types Section - Expandable -->
-      <!-- @if (expandedServiceId === service.id) {
-      <div class="service-types-container">
-        <div class="service-types-header">
-          <h4>Service Types & Examples</h4>
-        </div>
-
-        <div class="service-types-grid">
-          @for (type of getServiceTypes(service.serviceTypesKey); track type.id) {
-          <div class="service-type-card" (click)="navigateToService(service.serviceTypesKey)">
-            <div class="type-image-wrapper">
-              <img [src]="type.imageUrl" [alt]="type.name" class="type-image" loading="lazy">
-              <div class="image-overlay"></div>
-            </div>
-            <div class="type-info">
-              <h5>{{ type.name }}</h5>
-            </div>
-          </div>
-          }
-        </div>
-      </div>
-      } -->
     </div>
     }
 </div>

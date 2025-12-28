@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataStoreService } from '../services/data-store.service';
 
 @Component({
   selector: 'app-loader',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './loader.component.css'
 })
 export class LoaderComponent {
+
+  constructor(public dataStore: DataStoreService) { }
+
 
 }

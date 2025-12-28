@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { RouterLink } from "@angular/router";
 
 
 @Component({
 selector: 'app-artists',
 standalone: true,
 templateUrl: './artists.component.html',
-styleUrls: ['./artists.component.css']
+styleUrls: ['./artists.component.css'],
+imports: [RouterLink]
 })
 export class ArtistsComponent {
 artists = [

@@ -306,10 +306,55 @@
     transition: all 0.3s ease;
 }
 
-.service-item:hover .service-image {
-    background: linear-gradient(135deg, rgba(255, 122, 162, 0.5) 0%, rgba(255, 79, 152, 0.4) 100%);
+.service-image.bridal {
+    background-image: url('/bridal/bridal-party-packages.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.service-image.party{
+    background-image: url('/party/festive-looks.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.service-image.photoshoot{
+    background-image: url('/photoshoot/camera-ready-looks.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.service-item:hover .service-image.bridal {
+    background-image: url('/bridal/bridal-party-packages.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     color: white;
 }
+
+.service-item:hover .service-image.party{
+    background-image: url('/party/festive-looks.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+.service-item:hover .service-image.photoshoot{
+    background-image: url('/photoshoot/camera-ready-looks.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+}
+
+/* .service-item:hover .service-image {
+    background: linear-gradient(135deg, rgba(255, 122, 162, 0.5) 0%, rgba(255, 79, 152, 0.4) 100%);
+    color: white;
+} */
 
 .service-item h3 {
     font-size: 22px;
