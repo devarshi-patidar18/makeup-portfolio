@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataStoreService } from '../../services/data-store.service';
-
-// Replace these with your EmailJS values
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-inquiry',
@@ -24,7 +20,9 @@ export class InquiryComponent implements OnInit {
   makeupType = '';
   showConfirmation = false;
 
-  constructor(private route: ActivatedRoute, public dataStore: DataStoreService) {}
+  constructor(private route: ActivatedRoute, public dataStore: DataStoreService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     // preselect makeup type if provided as query param (from Book button)
@@ -56,26 +54,55 @@ export class InquiryComponent implements OnInit {
       makeupType: this.makeupType || 'Not selected',
       message: this.message || ''
     };
-
     const win: any = window as any;
-    if (!win.emailjs || !win.emailjs.send) {
-      alert('EmailJS is not loaded. Make sure you added the EmailJS script and set keys.');
+
+    // Resolve environment keys (support a few common naming patterns)
+    const SERVICE_ID = environment.EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = environment.EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = environment.EMAILJS_PUBLIC_KEY;
+
+    if (!SERVICE_ID || !TEMPLATE_ID) {
+      alert('EmailJS service/template IDs are not configured in the environment.');
       return;
     }
 
     try {
+      // Load EmailJS script if not present
+      await this.ensureEmailJsLoaded();
+
       // init with public key (safe to call multiple times)
-      if (EMAILJS_PUBLIC_KEY && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        win.emailjs.init(EMAILJS_PUBLIC_KEY);
+      if (PUBLIC_KEY) {
+        try { win.emailjs.init(PUBLIC_KEY); } catch (e) { /* swallow init errors */ }
       }
 
-      await win.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+      await win.emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
       this.showConfirmation = true;
       this.clearForm();
     } catch (err) {
       console.error('EmailJS send error', err);
       alert('Failed to send inquiry. Please try again later.');
     }
+  }
+
+  private ensureEmailJsLoaded(): Promise<void> {
+    const win: any = window as any;
+    if (win.emailjs && win.emailjs.send) return Promise.resolve();
+
+    return new Promise((resolve, reject) => {
+      const existing = document.querySelector('script[data-emailjs]');
+      if (existing) {
+        (existing as HTMLScriptElement).addEventListener('load', () => resolve());
+        (existing as HTMLScriptElement).addEventListener('error', () => reject(new Error('EmailJS script failed to load')));
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.setAttribute('data-emailjs', 'true');
+      script.src = 'https://cdn.emailjs.com/dist/email.min.js';
+      script.onload = () => resolve();
+      script.onerror = () => reject(new Error('EmailJS script failed to load'));
+      document.head.appendChild(script);
+    });
   }
 
   clearForm() {
@@ -87,11 +114,15 @@ export class InquiryComponent implements OnInit {
   }
 
   closeConfirmation() {
-    this.showConfirmation = false;
+    this.dataStore.isPageLoading = false;
+    this.router.navigate(["/"]);
   }
 
-  sendInquiry(){
+  sendInquiry() {
+    this.dataStore.isPageLoading = true;
     this.submit();
     this.makeupType = '';
   }
+
+  
 }
