@@ -15,7 +15,7 @@ export const routes: Routes = [
 { path: 'artists', component: ArtistsComponent },
 { path: 'inquiry', component: InquiryComponent },
 { path: 'portfolio', component: PortfolioComponent },
-// { path: '**', redirectTo: '' },
+{ path: '**', redirectTo: '' },
 ];
 
 
