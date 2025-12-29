@@ -57,17 +57,3 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-
-### Header 
- * Logo in left side
- * Hamburger in right side for mobile screen
- * Menue items in center for desktop screen
- * AI generated girl image in background with position center 
- * As the hamburger is clicked menu items opens Those menu items should be part of header and girl photo should now visible on header as well as for menu items
-
- ### Home page
-  * By default home page will be visible
-  * In the background client's customer's photo in background
-  * some quote and asking customer for booking session of makeup
-  * 
